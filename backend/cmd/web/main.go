@@ -1,6 +1,9 @@
 package main
 
 import (
+	"log"
+	"net/http"
+
 	"github.com/andiliewantorosusanto/money-management/pkg/config"
 	"github.com/andiliewantorosusanto/money-management/pkg/handlers"
 )
@@ -14,5 +17,10 @@ func main() {
 
 	handler := routes(&app)
 
-	handler.ServeHTTP(app.config.)
+	s := http.Server{
+		Addr:    portNumber,
+		Handler: handler,
+	}
+
+	log.Fatal(s.ListenAndServe())
 }
